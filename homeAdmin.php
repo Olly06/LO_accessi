@@ -32,7 +32,7 @@
 			print_r(getLastAccess($_SESSION['idU']));
 			echo '</pre>';
 		?>
-		
+		<h2>Visualizza Accessi</h2>
 		<form id='frmUser' onsubmit='clearDIV(); return false;'>
 			Utente: <select name='user' onchange='getAccesses()'>
 						<option value=''>---</option>
@@ -46,7 +46,31 @@
 			<input type='submit' value='Clear'>
 		</form>
 		<div id='ris'></div>
-		
+
+
+
+
+		<h2>Cancella Utenti</h2>
+		<form id='frmDelete' onsubmit='removeUser(); return false;'>
+			Utente: <select name='user'>
+						<option value=''>---</option>
+			<?php
+				$users = getAllUsers();
+				foreach($users AS $a){
+					echo "<option value='" . $a['idU'] . "'>" . $a['email'] . "</option>";
+				}
+			?>
+			</select>
+			<input type='submit' value='Rimuovi Utente'>
+		</form>
+		<div id='risDelete'></div>
+
+
+
+
+
+
+		<hr>
 		<a href="logout.php"><button>LOGOUT</button></a>
 		<br>
 		<br>

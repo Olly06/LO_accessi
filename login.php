@@ -32,6 +32,6 @@
 			if(isset($_GET['errLog']) && $_GET['errLog'])
 				echo "<p><b style=\"color:red;\"> Credenziali errate, ritenta l'accesso</b></p>";
 	}
-		?>
+		?>	
 	</body>
 </html>

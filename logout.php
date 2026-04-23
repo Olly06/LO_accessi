@@ -6,8 +6,8 @@
 	session_destroy();
 	
 	$lastID = $_SESSION['lastLogInID'];
-	$query = "UPDATE accessi SET DataFine=?, OraFine=? WHERE idA=?;";
-	execUpdateOrDelete($query, [date('Y-m-d'), date('H:i:s'), $lastID]);
+	$query = "UPDATE accessi SET DataFine='" . date('Y-m-d') . "', OraFine='" . date('H:i:s') . "' WHERE idA=$lastID;";
+	execUpdateOrDelete($query);
 	
 	header("Location: index.php");
 ?>

@@ -1,5 +1,5 @@
 <?php
-	// Lepuri Orlando homeUser.php
+	// Lepuri Orlando 5AI homeUser.php
 	require 'func.php';
 	
 	session_start();

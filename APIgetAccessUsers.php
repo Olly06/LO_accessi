@@ -1,5 +1,5 @@
 <?php
-	//Lepuri Orlando API.php
+	//Lepuri Orlando 5AI APIgetAccessUsers.php
 	require_once 'func.php';	
 	if(isset($_POST['idU'])){
 		$idU = $_POST['idU'];

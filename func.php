@@ -24,6 +24,11 @@
 		$res = execSelect("SELECT idU, email FROM utenti ORDER BY email;");
 		return $res;
 	}
+
+	function deleteUser($id){
+		$res = execUpdateOrDelete("DELETE FROM utenti WHERE idU='$id'");
+		return $res;
+	}
 	
 ?>
 

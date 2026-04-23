@@ -1,5 +1,5 @@
 <?php
-	//Lepuri Orlando funcDB.php
+	//Lepuri Orlando 5AI funcDB.php
 	function connDB(){
 		$host = 'localhost';
 		$db = 'lo_accessi';
