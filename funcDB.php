@@ -1,4 +1,5 @@
 <?php
+	//Lepuri Orlando funcDB.php
 	function connDB(){
 		$host = 'localhost';
 		$db = 'lo_accessi';
@@ -15,44 +16,31 @@
 		
 		return $conn;
 	}
-	
-	function execSelect($q){
-		$result = null;
-		$conn = connDB();
-		
-		if($conn != null){
-			try{
-				$stmt = $conn->prepare($q);
-				$stmt -> execute();
-				
-				$result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-			}
-			catch(PDOException $e){
-				$result = null;
-			}
-		}
-		
-		return $result;
-	}
-	
-	function execInsert($q){
-		$result = null;
-		$conn = connDB();
-		
-		if($conn != null){
-			try{
-				$stmt = $conn->prepare($q);
-				$stmt -> execute();
-				
-				$result = $conn -> lastInsertId();
-			}
-			catch(PDOException $e){
-				$result = null;
-			}
-		}
-		
-		return $result;
-	}
+	function execSelect($q, $params = []) {
+    $result = null;
+    $conn = connDB();
+    if($conn != null){
+        try{
+            $stmt = $conn->prepare($q);
+            $stmt->execute($params);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $e){ $result = null; }
+    }
+    return $result;
+}
+
+function execInsert($q, $params = []) {
+    $result = null;
+    $conn = connDB();
+    if($conn != null){
+        try{
+            $stmt = $conn->prepare($q);
+            $stmt->execute($params);
+            $result = $conn->lastInsertId();
+        } catch(PDOException $e){ $result = null; }
+    }
+    return $result;
+}
 	
 	function execUpdateOrDelete($q){
 		$result = null;

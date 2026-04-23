@@ -2,11 +2,17 @@
 	// Lepuri Orlando 5AI func.php
 	require_once 'funcDB.php';
 	
+	
 	function isValidUser($user){
 		$u = $user['user'];
 		$p = $user['pwd'];
-		$res = execSelect("SELECT * FROM utenti WHERE email='$u' AND password='$p';");
+		$res = execSelect("SELECT * FROM utenti WHERE email=? AND password=?;", [$u, $p]);
 		return (count($res) == 1) ? $res[0] : null;
+	}
+
+	function getAllAccessesFromUser($idU){
+		$res = execSelect("SELECT * FROM accessi WHERE idU=?;", [$idU]);
+		return $res;
 	}
 	
 	function getLastAccess($id){
@@ -19,8 +25,5 @@
 		return $res;
 	}
 	
-	function getAllAccessesFromUser($idU){
-		$res = execSelect("SELECT * FROM accessi WHERE idU='$idU';");
-		return $res;
-	}
 ?>
+

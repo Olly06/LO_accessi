@@ -20,8 +20,8 @@
 			$_SESSION['residenza'] = $myUser['residenza'];
 			$_SESSION['ruolo'] = ($myUser['ruolo'] == '1') ? "admin" : "user";
 			
-			$sqlIns = "INSERT INTO accessi (DataInizio,OraInizio,idU) VALUES ('" . date('Y-m-d') . "','" . date('H:i:s') . "','" . $_SESSION['idU'] . "');";
-			$_SESSION['lastLogInID'] = execInsert($sqlIns);
+			$sqlIns = "INSERT INTO accessi (DataInizio, OraInizio, idU) VALUES (?, ?, ?);";
+			$_SESSION['lastLogInID'] = execInsert($sqlIns, [date('Y-m-d'), date('H:i:s'), $_SESSION['idU']]);
 			
 			$home = ($myUser['ruolo'] == 1) ? 'homeAdmin.php' : 'homeUser.php';
 			header("Location: $home");

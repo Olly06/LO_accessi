@@ -1,3 +1,4 @@
+//Lepuri Orlando 5AI script.js
 function getAccesses(){
 	let idU = document.getElementById('frmUser').user.value;
 	const ris = document.getElementById('ris');
