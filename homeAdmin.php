@@ -66,9 +66,24 @@
 		<div id='risDelete'></div>
 
 
-
-
-
+		
+		
+		<h2>Cancella Accessi prima di Data</h2>
+		<form id='frmAccess' onsubmit='removeAccessPriorTo(); return false;'>
+			Utente: 
+			<select name='user'>
+				<option value=''>---</option>
+					<?php
+						$users = getAllUsers();
+						foreach($users AS $a){
+							echo "<option value='" . $a['idU'] . "'>" . $a['email'] . "</option>";
+						}
+					?>
+			</select>
+			<input type="date" value="date">
+			<input type='submit' value='Rimuovi Accessi'>
+		</form>
+		<div id='risDelAccess'></div>
 
 		<hr>
 		<a href="logout.php"><button>LOGOUT</button></a>
