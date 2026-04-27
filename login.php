@@ -22,9 +22,11 @@
 	<body>
 		<h1>Pagina di Log-In</h1>
 		<form method="POST" action="checkUser.php">
-			Username: <input type="text" name="user" placeholder="User..." required>
-			<br>
-			Password: <input type="password" name="pwd" placeholder="Pwd..." required>
+        <label>Email:</label><br>
+        <input type="email" name="user" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="pwd" required><br><br>
 			<br>
 			<input type="submit" name="login" value="ACCEDI">
 		</form><br>
