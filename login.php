@@ -27,7 +27,8 @@
 			Password: <input type="password" name="pwd" placeholder="Pwd..." required>
 			<br>
 			<input type="submit" name="login" value="ACCEDI">
-		</form>
+		</form><br>
+		<a href="register.php"><button>Registrati</button></a>
 		<?php
 			if(isset($_GET['errLog']) && $_GET['errLog'])
 				echo "<p><b style=\"color:red;\"> Credenziali errate, ritenta l'accesso</b></p>";
