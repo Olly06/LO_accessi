@@ -31,7 +31,7 @@
 	}
 
 	function deleteUserAccessesAfterDate($idU, $dataLimite){
-    $res = execUpdateOrDelete("DELETE FROM accessi WHERE idU='$idU' AND DataInizio > '$dataLimite'");
+    $res = execUpdateOrDelete("DELETE FROM accessi WHERE idU='$idU' AND DataInizio <= '$dataLimite'");
     return $res;
 }
 	
