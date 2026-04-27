@@ -30,10 +30,10 @@
 		return $res;
 	}
 
-	function rmAccesspriorTo($id, $date){
-		$res = execUpdateOrDelete("DELETE FROM accessi WHERE idU='$id' AND DataFine<$date");
-		return $res;
-	}
+	function deleteUserAccessesAfterDate($idU, $dataLimite){
+    $res = execUpdateOrDelete("DELETE FROM accessi WHERE idU='$idU' AND DataInizio > '$dataLimite'");
+    return $res;
+}
 	
 ?>
 

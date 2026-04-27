@@ -68,22 +68,26 @@
 
 		
 		
-		<h2>Cancella Accessi prima di Data</h2>
-		<form id='frmAccess' onsubmit='removeAccessPriorTo(); return false;'>
+		<br><br>
+		<h2>Cancella Accessi Utente (dopo una certa data)</h2>
+		<form id='frmDeleteUserAccesses' onsubmit='removeUserAccessesAfterDate(); return false;'>
 			Utente: 
-			<select name='user'>
+			<select name='user' required>
 				<option value=''>---</option>
-					<?php
-						$users = getAllUsers();
-						foreach($users AS $a){
-							echo "<option value='" . $a['idU'] . "'>" . $a['email'] . "</option>";
-						}
-					?>
+			<?php
+				$users = getAllUsers();
+				foreach($users AS $a){
+					echo "<option value='" . $a['idU'] . "'>" . $a['email'] . "</option>";
+				}
+			?>
 			</select>
-			<input type="date" value="date">
-			<input type='submit' value='Rimuovi Accessi'>
+			<br><br>
+			Elimina gli accessi successivi al: 
+			<input type='date' name='dataLimite' required>
+			<br><br>
+			<input type='submit' value='Rimuovi Accessi Utente'>
 		</form>
-		<div id='risDelAccess'></div>
+		<div id='risDeleteUserAccesses'></div>
 
 		<hr>
 		<a href="logout.php"><button>LOGOUT</button></a>

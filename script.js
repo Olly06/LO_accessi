@@ -18,8 +18,8 @@ function getAccesses(){
 	}
 }
 
-function manageReturn(txt, ret){
-	const ris = document.getElementById(ret);
+function manageReturn(txt){
+	const ris = document.getElementById("ris");
 	let msgJson = JSON.parse(txt);
 	ris.innerHTML = "<pre>" + JSON.stringify(msgJson, null, 4) + "</pre>";
 }
@@ -40,7 +40,7 @@ function removeUser(){
 		xhttp.open("POST", 'APIdeleteUser.php');
 
 		xhttp.onload = function(){
-			manageReturn(this.responseText, risDelete);
+			manageReturn(this.responseText);
 		}
 		
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -49,23 +49,23 @@ function removeUser(){
 
 }
 
-function removeAccessPriorTo(){
-
-	let idU = document.getElementById('frmAccess').user.value; 
-	let date = document.getElementById('frmAccess').date.value; 
-	const risDelAccess = document.getElementById('risDelAccess');
-	if(idU == null || date == ''){
-		risDelAccess.innerHTML = "Selezionare un Utente e/o una data";
-	}else{
+function removeUserAccessesAfterDate(){
+	let idU = document.getElementById('frmDeleteUserAccesses').user.value; 
+	let dataLimite = document.getElementById('frmDeleteUserAccesses').dataLimite.value; 
+	const risDeleteUserAccesses = document.getElementById('risDeleteUserAccesses');
+	
+	if(idU == "" || dataLimite == ""){
+		risDeleteUserAccesses.innerHTML = "Selezionare un Utente e una Data validi";
+	} else {
 		const xhttp = new XMLHttpRequest();
-		xhttp.open("POST", 'APIrmAccessPriorTo.php');
+		xhttp.open("POST", 'APIdeleteUserAccessesAfterDate.php');
 
 		xhttp.onload = function(){
-			manageReturn(this.responseText, risDelAccess);
+			let msgJson = JSON.parse(this.responseText);
+			risDeleteUserAccesses.innerHTML = "<b>" + msgJson + "</b>";
 		}
 		
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send("idU="+idU+"date="+date);
+		xhttp.send("idU=" + idU + "&dataLimite=" + dataLimite);
 	}
-
 }
