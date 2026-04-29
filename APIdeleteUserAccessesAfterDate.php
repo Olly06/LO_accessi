@@ -14,7 +14,7 @@
 			if($righeEliminate === null) {
 				$risServer = 'Errore durante l\'eliminazione nel database.';
 			} else {
-				$risServer = "Operazione completata. Sono stati eliminati $righeEliminate accessi successivi al $dataLimite per l'utente selezionato.";
+				$risServer = "Operazione completata. Sono stati eliminati $righeEliminate accessi precedenti al $dataLimite per l'utente selezionato.";
 			}
 		}
 	} else {
