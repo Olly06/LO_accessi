@@ -90,6 +90,76 @@
 		<div id='risDeleteUserAccesses'></div>
 
 		<hr>
+		<h2>Modifica Dati di un Utente</h2>
+		<form method="GET" action="editProfile.php">
+			Utente: <select name="idU" required>
+				<option value="">---</option>
+			<?php
+				foreach($users AS $a){
+					echo "<option value='" . $a['idU'] . "'>" . $a['email'] . "</option>";
+				}
+			?>
+			</select>
+			<input type="submit" value="Modifica Profilo">
+		</form>
+
+		<hr>
+
+		<h3>Ingressi compresi tra due date</h3>
+		<form method="POST">
+			Dal: <input type="date" name="dataDal" required> 
+			Al: <input type="date" name="dataAl" required>
+			<input type="submit" name="btnQueryI" value="Cerca">
+		</form>
+		<?php
+			if(isset($_POST['btnQueryI'])){
+				$resI = getAccessiTraDate($_POST['dataDal'], $_POST['dataAl']);
+				if($resI){
+					echo "<ul>";
+					foreach($resI as $r) echo "<li>{$r['cognome']} {$r['nome']} - Inizio: {$r['DataInizio']} {$r['OraInizio']}</li>";
+					echo "</ul>";
+				} else echo "<p>Nessun risultato.</p>";
+			}
+		?>
+
+		<h3>Accessi per ogni giorno</h3>
+		<?php
+			$resJ = getConteggioAccessiGiornalieri();
+			if($resJ){
+				echo "<table border='1'><tr><th>Data</th><th>Numero Accessi</th></tr>";
+				foreach($resJ as $g) echo "<tr><td>{$g['DataInizio']}</td><td>{$g['NumeroAccessi']}</td></tr>";
+				echo "</table>";
+			}
+		?>
+
+		<h3>Utenti con più di N accessi in un mese</h3>
+		<form method="POST">
+			Min. Accessi (N): <input type="number" name="n_acc" required>
+			Mese : <input type="number" name="mese" min="1" max="12" required>
+			Anno: <input type="number" name="anno" required>
+			<input type="submit" name="btnQueryK" value="Cerca">
+		</form>
+		<?php
+			if(isset($_POST['btnQueryK'])){
+				$resK = getUtentiFrequenti($_POST['n_acc'], $_POST['mese'], $_POST['anno']);
+				if($resK){
+					echo "<ul>";
+					foreach($resK as $r) echo "<li>{$r['cognome']} {$r['nome']} - Totale accessi: {$r['TotaleAccessi']}</li>";
+					echo "</ul>";
+				} else echo "<p>Nessun utente soddisfa i criteri.</p>";
+			}
+		?>
+
+		<h3>Utente con accesso di durata massima</h3>
+		<?php
+			$resL = getAccessoDurataMassima();
+			if($resL && count($resL) > 0){
+				$l = $resL[0];
+				echo "<p>L'utente <b>{$l['cognome']} {$l['nome']}</b> ha effettuato l'accesso più lungo il {$l['DataInizio']} alle {$l['OraInizio']}. <br>Durata complessiva: <b>{$l['Durata']}</b></p>";
+			}
+		?>
+
+		<hr>
 		<a href="logout.php"><button>LOGOUT</button></a>
 		<br>
 		<br>
