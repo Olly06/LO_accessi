@@ -1,5 +1,5 @@
 <?php
-	// APIdeleteUserAccessesAfterDate.php
+	// Lepuri Orlando 5AI APIdeleteUserAccessesAfterDate.php
 	require_once 'func.php';	
 	
 	if(isset($_POST['idU']) && isset($_POST['dataLimite'])){

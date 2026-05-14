@@ -1,5 +1,5 @@
 <?php
-// editProfile.php
+// Lepuri Orlando 5AI editProfile.php
 require_once 'func.php';
 session_start();
 
